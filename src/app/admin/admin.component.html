@@ -20,11 +20,13 @@
                   <div class="panel-body text-center">
                       <button class="btn btn-lg" (click)="connect()" [disabled]="connecting"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>  Connect to ng-beacon</button>
                   </div>
-              </div>
           </div>
+          
 
-          <div *ngIf="connected" class="panel panel-default panel-profile m-b-0">
-            <div class="panel-heading">Connected!</div>
+         
+            <div *ngIf="connected" class="alert alert-success text-center">Connected!</div>
+             
+            <div *ngIf="connected" class="panel panel-default panel-profile m-b-0">    
 
             <div class="panel-body text-center">
               <div>
@@ -33,32 +35,37 @@
                 <p>Battery: {{batteryVoltage|number:'1.2-2'}}V</p>
                 <!--<p>Uptime: {{beaconUptime|amDuration:'seconds'}}</p>-->
               </div>
-            <button md-raised-button (click)="disconnect()">Disconnect</button>
-            
+            <button class="btn btn-lg"  (click)="disconnect()">Disconnect</button>
+            <hr/>
           <div>
             <p>Configure Beacon</p>
             <div>
-              <div>
-                <input placeholder="Beacon name" [(ngModel)]="beaconName" maxlength="10" />
-                <input mdInput placeholder="Physical Web URL" [(ngModel)]="beaconUrl" maxlength="20" />
+              <div class="form-group">
+                <label> Beacon Name: </label>
+                  <input class="form-control" placeholder="Beacon name" [(ngModel)]="beaconName" maxlength="10" />
+              </div>
+              <div class="form-group">
+                <label> Eddystone Url: </label> 
+                  <input class="form-control" placeholder="Physical Web URL" [(ngModel)]="beaconUrl" maxlength="20" />
               </div>
 
-              <button (click)="reset()">Reset</button>
-              <button (click)="uploadEddystone()">Physical Web Beacon</button>
+              <button class="btn btn-lg" (click)="reset()">Reset</button>
+              <button class="btn btn-lg" (click)="uploadEddystone()">Physical Web Beacon</button>
             </div>
           </div>
-
+          <hr/>
           <div>
             <p>Debug Log</p>
             <div>
               <pre>{{debugLog}}</pre>
             </div>
             <div>
-              <button (click)="clearLog()"><span>delete</span></button>
+              <button class="btn btn-lg" (click)="clearLog()">Clear</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 </section>

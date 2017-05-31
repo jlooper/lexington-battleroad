@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgBeaconService } from '../services/ng-beacon.service';
+import { NgBeaconService } from '../services/beacon-admin.service';
 import { BluetoothUtilsService } from '../services/bluetooth-utils.service';
 
 @Component({

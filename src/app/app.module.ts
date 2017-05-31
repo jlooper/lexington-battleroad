@@ -13,14 +13,26 @@ import { LocaleComponent } from './locale/locale.component';
 import { ProgressComponent } from './progress/progress.component';
 import { MapComponent } from './map/map.component';
 import { AdminComponent } from './admin/admin.component';
+import { AboutComponent } from './about/about.component';
 
 import { AppRouting } from './app.routing';
 
-import { NgBeaconService } from './services/ng-beacon.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth, AngularFireAuthProvider } from 'angularfire2/auth';
+
+import { NgBeaconService } from './services/beacon-admin.service';
 import { BluetoothUtilsService } from './services/bluetooth-utils.service';
 import { BleUartService } from './services/ble-uart.service';
-import { AboutComponent } from './about/about.component';
 
+export const config = {
+    apiKey: "AIzaSyAxYm_ja9JoJpr7J9332QIYAuTf-3a6i2E",
+    authDomain: "beacons-238ff.firebaseapp.com",
+    databaseURL: "https://beacons-238ff.firebaseio.com",
+    projectId: "beacons-238ff",
+    storageBucket: "beacons-238ff.appspot.com",
+    messagingSenderId: "794598895354"
+};
 
 @NgModule({
   declarations: [
@@ -31,7 +43,7 @@ import { AboutComponent } from './about/about.component';
     ProgressComponent,
     MapComponent,
     AdminComponent,
-    AboutComponent
+    AboutComponent    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +53,10 @@ import { AboutComponent } from './about/about.component';
     HttpModule,
     WebBluetoothModule.forRoot({
       enableTracing: true
-    })
+    }),
+    AngularFireModule.initializeApp(config),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [NgBeaconService, BluetoothUtilsService, BleUartService],
   bootstrap: [AppComponent]
