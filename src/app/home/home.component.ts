@@ -36,6 +36,12 @@ ngOnInit(){
     this.getDeviceStatus();
     this.items = this.db.list('/Locales');
     //todo sanitize images
+    this.items.subscribe(queriedItems => {
+        for (let prop in queriedItems){
+              this.cleanedImage = this.sanitizer.bypassSecurityTrustUrl(queriedItems[prop].Image);
+              queriedItems[prop].Image = this.cleanedImage.changingThisBreaksApplicationSecurity;
+        }  
+    });
   }
 
 getDeviceStatus() {
