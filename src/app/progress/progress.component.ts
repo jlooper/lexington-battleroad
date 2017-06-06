@@ -12,6 +12,7 @@ import 'rxjs/add/operator/map';
 })
 export class ProgressComponent {
   locales: FirebaseListObservable<any[]>;
+  checkins: Array<any>;
   votingRecord;
   public seriesData: Observable<number[]>;
 
@@ -21,7 +22,13 @@ constructor(private db: AngularFireDatabase) {
     this.locales.subscribe(queriedItems => {
         for (let prop in queriedItems){
             this.locales[prop] = queriedItems[prop];
-        }  
+        }
+
+        var checkins = [];
+        queriedItems.forEach((item) => {
+          checkins.push({ value: item.Checkins });
+        });
+        this.checkins = checkins;
     });
 }
  
