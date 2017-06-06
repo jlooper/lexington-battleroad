@@ -6,6 +6,11 @@ import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/bufferCount';
 import 'rxjs/add/operator/map';
 
+interface Model {
+    locale: string;
+    checkins: number;
+}
+
 @Component({
   selector: 'app-progress',
   templateUrl: './progress.component.html'
@@ -13,33 +18,21 @@ import 'rxjs/add/operator/map';
 export class ProgressComponent {
   locales: FirebaseListObservable<any[]>;
   checkins: Array<any>;
-  votingRecord;
-  public seriesData: Observable<number[]>;
-
+  locale: Array<any>;
+  
 constructor(private db: AngularFireDatabase) { 
-    //this.loadVotingRecord();
     this.locales = this.db.list('/Locales');
     this.locales.subscribe(queriedItems => {
-        for (let prop in queriedItems){
-            this.locales[prop] = queriedItems[prop];
-        }
-
         var checkins = [];
+        var locale = [];
         queriedItems.forEach((item) => {
-          checkins.push({ value: item.Checkins });
+          checkins.push({ value: item.Checkins, color: "#AC0000" });
+          locale.push(item.Name)
         });
         this.checkins = checkins;
+        this.locale = locale;
+        
     });
-}
- 
-
-  private loadVotingRecord() {
-    this.votingRecord = localStorage.getItem("votingRecord");
-    if (this.votingRecord) {
-      this.votingRecord = JSON.parse(this.votingRecord);
-    } else {
-      this.votingRecord = {};
-    }
-  }
+  } 
 
 }

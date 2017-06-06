@@ -1,13 +1,33 @@
-<p>
-  progress works!
-</p>
-
-
-<div class="chart-wrapper">
-      <kendo-chart>
-          <kendo-chart-series>
-            <kendo-chart-series-item [data]="checkins">
-            </kendo-chart-series-item>
-          </kendo-chart-series>
-        </kendo-chart>
+<section id="poem">
+    <header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-text">
+                    <h1>Checkins</h1>
+                    <hr class="star-light">
+                </div>
+            </div>
+        </div>
     </div>
+</header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+               <div class="chart-wrapper">
+                  <kendo-chart>
+                    <kendo-chart-category-axis>
+                      <kendo-chart-category-axis-item [categories]="locale">
+                      </kendo-chart-category-axis-item>
+                    </kendo-chart-category-axis>
+                    <kendo-chart-series>
+                      <kendo-chart-series-item [data]="checkins">
+                      </kendo-chart-series-item>
+                    </kendo-chart-series>
+                  </kendo-chart>
+              </div> 
+            </div>
+        </div>
+    </div>
+</section>
+
