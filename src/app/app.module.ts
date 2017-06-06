@@ -25,6 +25,10 @@ import { NgBeaconService } from './services/beacon-admin.service';
 import { BluetoothUtilsService } from './services/bluetooth-utils.service';
 import { BleUartService } from './services/ble-uart.service';
 
+import { ChartsModule } from '@progress/kendo-angular-charts';
+// Comment this out before performing a `ng build --prod` to fix the graph scrolling problem
+import 'hammerjs';
+
 export const config = {
     apiKey: "AIzaSyAxYm_ja9JoJpr7J9332QIYAuTf-3a6i2E",
     authDomain: "beacons-238ff.firebaseapp.com",
@@ -43,7 +47,7 @@ export const config = {
     ProgressComponent,
     MapComponent,
     AdminComponent,
-    AboutComponent    
+    AboutComponent  
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ export const config = {
     }),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ChartsModule   
   ],
   providers: [NgBeaconService, BluetoothUtilsService, BleUartService],
   bootstrap: [AppComponent]

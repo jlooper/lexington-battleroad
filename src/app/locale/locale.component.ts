@@ -11,6 +11,10 @@ export class LocaleComponent implements OnInit {
   sub: any;
   id: string;
   item: any;
+  t: any;
+  m: any;
+  message: string;
+  error: string;
 
   name: string;
   content: string;
@@ -31,6 +35,27 @@ export class LocaleComponent implements OnInit {
         this.content = item.Content;
         this.source = item.Source;
       })
+  }
+
+  checkIn(){
+    this.db.list('/Locales/' + this.id)
+    .subscribe(queriedItems => {
+        for (let prop in queriedItems){
+            //this.m = queriedItems[prop].Checkins;
+            if (queriedItems[prop].$key == "Checkins") {
+              const locales = this.db.list('/Locales');
+                  locales.update( this.id, {Checkins: queriedItems[prop].$value+1}  )
+                  .then(
+                    (success) => {
+                      this.message = "Checked in!";
+                  }).catch(
+                    (err) => {
+                      this.error = "There was a problem checking in.";       
+                  })
+            }
+            
+        }  
+    });
   }
   
   

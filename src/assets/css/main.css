@@ -24,6 +24,13 @@ p.small {
     font-size: 16px;
 }
 
+.red {
+    background-color: #AC0000;
+    color: white;
+    padding: 10;
+    font-size: 30px;
+}
+
 a,
 a:hover,
 a:focus,
