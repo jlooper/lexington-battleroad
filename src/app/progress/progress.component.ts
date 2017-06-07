@@ -1,15 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/operator/bufferCount';
-import 'rxjs/add/operator/map';
-
-interface Model {
-    locale: string;
-    checkins: number;
-}
 
 @Component({
   selector: 'app-progress',

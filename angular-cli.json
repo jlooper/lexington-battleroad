@@ -21,7 +21,8 @@
       "styles": [
         "../node_modules//@progress/kendo-theme-default/dist/all.css",
         "assets/css/bootstrap.css",
-        "assets/css/main.css"
+        "assets/css/main.css",
+        "styles.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
