@@ -1,13 +1,12 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { NgBeaconService } from '../services/beacon-admin.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {DomSanitizer} from '@angular/platform-browser';
+//BeaconService for leveraging angular lib
 import { BeaconService } from '../services/beacon.service';
-import { BluetoothCore } from '@manekinekko/angular-web-bluetooth';
-
-//todo combine all beacon services
+//BeaconAdminService for grabbing actual beacon info
+import { BeaconAdminService } from '../services/beacon-admin.service';
 
 @Component({
   selector: 'home',
@@ -24,7 +23,7 @@ export class HomeComponent implements OnInit {
   private sub:any;
   device: any = {};
   
-  constructor(private ngBeacon: NgBeaconService, 
+  constructor(private ngBeacon: BeaconAdminService, 
     private sanitizer: DomSanitizer, 
     private db: AngularFireDatabase, 
     private activatedRoute: ActivatedRoute, 
@@ -42,7 +41,8 @@ ngOnInit(){
               queriedItems[prop].Image = this.cleanedImage.changingThisBreaksApplicationSecurity;
         }  
     });
-  }
+}
+
 
 getDeviceStatus() {
       this._beaconService.getDevice().subscribe(

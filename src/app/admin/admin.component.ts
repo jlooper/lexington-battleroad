@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgBeaconService } from '../services/beacon-admin.service';
+import { BeaconAdminService } from '../services/beacon-admin.service';
 import { BluetoothUtilsService } from '../services/bluetooth-utils.service';
 
 @Component({
@@ -17,21 +17,21 @@ export class AdminComponent {
   beaconUrl = 'ngbeacon.io';
   debugLog = '';
 
-  constructor(private ngBeacon: NgBeaconService, private bluetoothUtils: BluetoothUtilsService) {}
+  constructor(private beaconAdmin: BeaconAdminService, private bluetoothUtils: BluetoothUtilsService) {}
 
   connect() {
     this.connecting = true;
     this.beaconVersion = '';
     this.batteryVoltage = 0;
     this.beaconUptime = null;
-    this.ngBeacon.connect()
+    this.beaconAdmin.connect()
       .finally(() => {
         this.connecting = false;
       })
       .subscribe(() => {
         this.connected = true;
-        this.ngBeacon.uart.receive$.subscribe(value => this.debugLog += value);
-        this.ngBeacon.uart.lines$.subscribe(line => {
+        this.beaconAdmin.uart.receive$.subscribe(value => this.debugLog += value);
+        this.beaconAdmin.uart.lines$.subscribe(line => {
           if (line.startsWith('["~$",')) {
             const [_, battery, uptime, version] = JSON.parse(line);
             this.beaconVersion = version;
@@ -39,12 +39,12 @@ export class AdminComponent {
             this.beaconUptime = uptime;
           }
         });
-        this.ngBeacon.uart.sendText(`\nprint(JSON.stringify(['~$',NRF.getBattery(),getTime()|0,process.env.VERSION]))\n`);
+        this.beaconAdmin.uart.sendText(`\nprint(JSON.stringify(['~$',NRF.getBattery(),getTime()|0,process.env.VERSION]))\n`);
       });
   }
 
   disconnect() {
-    this.ngBeacon.disconnect();
+    this.beaconAdmin.disconnect();
     this.clearLog();
     this.connected = false;
   }
@@ -54,26 +54,19 @@ export class AdminComponent {
   }
 
   reset() {
-    this.ngBeacon.uart.sendText('\nreset()\n');
+    this.beaconAdmin.uart.sendText('\nreset()\n');
   }
 
   get deviceName() {
-    return this.ngBeacon.deviceName;
+    return this.beaconAdmin.deviceName;
   }
 
   uploadEddystone() {
-    this.ngBeacon.uploadEddystone({name: this.beaconName}, this.beaconUrl);
-  }
-
-  uploadTemperature() {
-    this.ngBeacon.uploadTemperature({name: this.beaconName});
+    this.beaconAdmin.uploadEddystone({name: this.beaconName}, this.beaconUrl);
   }
 
   uploadIBeacon() {
-    this.ngBeacon.uploadIBeacon({name: this.beaconName});
+    this.beaconAdmin.uploadIBeacon({name: this.beaconName});
   }
 
-  readTemperature() {
-    this.ngBeacon.uart.sendText(`ngbeacon.temperature()\n ngbeacon.humidity()\n`);
-  }
 }

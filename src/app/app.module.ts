@@ -21,12 +21,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth, AngularFireAuthProvider } from 'angularfire2/auth';
 
-import { NgBeaconService } from './services/beacon-admin.service';
+import { BeaconAdminService } from './services/beacon-admin.service';
 import { BluetoothUtilsService } from './services/bluetooth-utils.service';
 import { BleUartService } from './services/ble-uart.service';
 
 import { ChartsModule } from '@progress/kendo-angular-charts';
-// Comment this out before performing a `ng build --prod` to fix the graph scrolling problem
+
 import 'hammerjs';
 
 export const config = {
@@ -63,7 +63,7 @@ export const config = {
     AngularFireAuthModule,
     ChartsModule   
   ],
-  providers: [NgBeaconService, BluetoothUtilsService, BleUartService],
+  providers: [BeaconAdminService, BluetoothUtilsService, BleUartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
