@@ -7,9 +7,11 @@ import { Component, OnInit} from '@angular/core';
 
 export class AppComponent implements OnInit {
 
+message: string;
+
 ngOnInit(){
   if (!navigator.bluetooth) {
-        alert('Your browser does not support Web Bluetooth. Please visit it on a mobile device with Bluetooth and the Physical Web enabled. Make sure you have enabled the Physical Web via the Chrome app on iOS, and that you are using a newer Android phone.');
+        this.message = 'Your browser does not support Web Bluetooth. Please visit it on a mobile device with Bluetooth and the Physical Web enabled.';
     }
   }
 }

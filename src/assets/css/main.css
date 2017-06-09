@@ -24,6 +24,13 @@ p.small {
     font-size: 16px;
 }
 
+.message {
+     background-color: yellow;
+     color: black;
+     font-size: 10px;
+     text-align: center;
+}
+
 .red {
     background-color: #AC0000;
     color: white;
@@ -109,8 +116,7 @@ header {
 }
 
 header .container {
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-top: 80px;
 }
 
 header img {
@@ -133,7 +139,7 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 150px;
+        padding-top: 80px;
     }
 
    
@@ -144,7 +150,7 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     .navbar-fixed-top {
-        padding: 25px 0;
+        /*padding: 25px 0;*/
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -223,9 +229,7 @@ section.success {
 }
 
 @media(max-width:767px) {
-    section {
-        padding: 75px 0;
-    }
+    
 
     section.first {
         padding-top: 75px;
