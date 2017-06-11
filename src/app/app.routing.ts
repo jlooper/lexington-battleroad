@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AdminComponent } from './admin/admin.component';
 import { AboutComponent } from './about/about.component';
+import { PrizeComponent } from './prize/prize.component';
 
 
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'poem', component: PoemComponent },
   { path: 'map', component: MapComponent },
   { path: 'locale/:id', component: LocaleComponent },
+  { path: 'prize/:id', component: PrizeComponent },
   { path: 'progress', component: ProgressComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'about', component: AboutComponent },

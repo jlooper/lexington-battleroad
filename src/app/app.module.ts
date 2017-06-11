@@ -14,6 +14,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { MapComponent } from './map/map.component';
 import { AdminComponent } from './admin/admin.component';
 import { AboutComponent } from './about/about.component';
+import { PrizeComponent } from './prize/prize.component';
 
 import { AppRouting } from './app.routing';
 
@@ -47,7 +48,8 @@ export const config = {
     ProgressComponent,
     MapComponent,
     AdminComponent,
-    AboutComponent  
+    AboutComponent,
+    PrizeComponent  
   ],
   imports: [
     BrowserModule,

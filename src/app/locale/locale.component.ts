@@ -10,9 +10,6 @@ export class LocaleComponent implements OnInit {
 
   sub: any;
   id: string;
-  item: any;
-  t: any;
-  m: any;
   message: string;
   error: string;
 
@@ -41,7 +38,6 @@ export class LocaleComponent implements OnInit {
     this.db.list('/Locales/' + this.id)
     .subscribe(queriedItems => {
         for (let prop in queriedItems){
-            //this.m = queriedItems[prop].Checkins;
             if (queriedItems[prop].$key == "Checkins") {
               const locales = this.db.list('/Locales');
                   locales.update( this.id, {Checkins: queriedItems[prop].$value+1}  )
